@@ -7,8 +7,7 @@ import Card from '../components/card';
 
 class HomeScreen extends React.Component {
   state = {
-    title: 'Welcome',
-    data: []
+    title: 'Random Drinks',
   };
   componentDidMount() {
     this.props.getData();
@@ -18,7 +17,6 @@ class HomeScreen extends React.Component {
   _renderItem = ({ item }) => (
     <Card
       title={item.strDrink}
-      description={item.strDrink}
       image_url={item.strDrinkThumb}
     />
   );
@@ -37,12 +35,10 @@ class HomeScreen extends React.Component {
   }
 }
 
- function mapStateToProps(state) {
-   return {
-     ...state,
-     data: state.data.data,
-   };
- }
+const mapStateToProps = (state) => ({
+  ...state,
+  data: state.data.data,
+})
 
 const mapDispatchToProps = dispatch => ({
   getData: () => dispatch(getData())
