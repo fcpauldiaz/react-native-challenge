@@ -4,7 +4,7 @@ import {
   SHOW_ERROR_DATA
 } from './types';
 
-export function logIn(): Function {
+export function getData(): Function {
   return async (dispatch: *): * => {
     try {
         const api = await fetch(
