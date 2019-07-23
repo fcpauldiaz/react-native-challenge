@@ -1,4 +1,3 @@
-// @flow
 
 import { GET_DRINKS_DATA, SHOW_ERROR_DATA } from '../actions/types';
 
@@ -7,7 +6,7 @@ const initialState = {
   errorMessage: null,
 };
 
-export default (state: Object = initialState, action: Object): Object => {
+export default (state = initialState, action)=> {
   
   switch (action.type) {
     case GET_DRINKS_DATA:

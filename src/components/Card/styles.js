@@ -1,7 +1,6 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { StyleSheet  } from 'react-native';
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
@@ -36,14 +35,3 @@ const styles = StyleSheet.create({
     borderColor: 'black'
   }
 });
-
-const Card = ({ title, description, image_url }) => (
-  <View style={styles.container}>
-    <Image source={{ uri: image_url }} style={styles.photo} />
-    <View style={styles.container_text}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  </View>
-);
-
-export default Card;

@@ -1,16 +1,14 @@
-// @flow
 import {
   GET_DRINKS_DATA,
   SHOW_ERROR_DATA
 } from './types';
 
-export function getData(): Function {
-  return async (dispatch: *): * => {
+import DrinksService from '../provider/services/DrinksService';
+
+export function getData() {
+  return async (dispatch) => {
     try {
-        const api = await fetch(
-          'https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass'
-        );
-        const data = await api.json()
+        const data = await DrinksService.getDrinks();
         dispatch({ type: GET_DRINKS_DATA, data: data });
     } catch (err) {
       dispatch({ type: SHOW_ERROR_DATA, error: err });

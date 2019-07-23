@@ -1,19 +1,16 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Text } from 'react-native';
 import { connect, } from 'react-redux';
 
-import { getData } from '../actions/data';
-import Card from '../components/card';
+import { getData } from '../../actions/data';
+import Card from '../../components/Card';
 
 class HomeScreen extends React.Component {
-  state = {
-    title: 'Random Drinks',
-  };
   componentDidMount() {
-    this.props.getData();
+    const { getDataConnected } = this.props;
+    getDataConnected();
   }
 
-  _keyExtractor = (item, index) => item.idDrink;
   _renderItem = ({ item }) => (
     <Card
       title={item.strDrink}
@@ -22,12 +19,13 @@ class HomeScreen extends React.Component {
   );
 
   render() {
-    const { navigate } = this.props.navigation;
+    const { data, errorMessage } = this.props;
     return (
       <View>
+        {errorMessage && <Text>{errorMessage}</Text>}
         <FlatList
-          data={this.props.data}
-          keyExtractor={this._keyExtractor}
+          data={data}
+          keyExtractor={(item, index) => item.idDrink}
           renderItem={this._renderItem}
         />
       </View>
@@ -35,13 +33,14 @@ class HomeScreen extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   ...state,
   data: state.data.data,
-})
+  errorMessage: state.errorMessage
+});
 
 const mapDispatchToProps = dispatch => ({
-  getData: () => dispatch(getData())
+  getDataConnected: () => dispatch(getData())
 });
 
 export default connect(
